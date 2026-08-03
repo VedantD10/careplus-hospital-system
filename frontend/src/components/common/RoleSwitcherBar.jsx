@@ -16,7 +16,7 @@ export const RoleSwitcherBar = () => {
     <div className="bg-[#0F4C81] text-white px-6 py-1.5 text-xs flex flex-wrap items-center justify-between gap-3 sticky top-0 z-40 border-b border-[#0c3d68]">
       <div className="flex items-center gap-2.5">
         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span className="text-slate-200 font-semibold tracking-tight">MEDINEX Demo Workspace Evaluator:</span>
+        <span className="text-slate-200 font-semibold tracking-tight">CarePlus Workspace Evaluator:</span>
         <span className="bg-[#007C91] text-white px-2 py-0.5 rounded font-mono font-bold">
           Active: {user?.role || 'GUEST'} ({user?.name || 'Not Logged In'})
         </span>

@@ -89,7 +89,7 @@ export const Login = () => {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 className="saas-input pl-9"
-                placeholder="name@medinex-hospital.in"
+                placeholder="name@careplus.com"
               />
             </div>
           </div>
@@ -114,7 +114,7 @@ export const Login = () => {
             disabled={loading}
             className="w-full saas-btn-primary justify-center py-2.5 text-xs font-bold uppercase tracking-wider"
           >
-            {loading ? 'Authenticating...' : 'Sign In to MEDINEX HIS'}
+            {loading ? 'Authenticating...' : 'Sign In to CarePlus HIS'}
             <ArrowRight className="w-4 h-4" />
           </button>
         </form>

@@ -4,9 +4,9 @@
 
 @layer base {
   :root {
-    --medinex-blue: #0F4C81;
-    --medinex-teal: #007C91;
-    --medinex-slate: #0F172A;
+    --careplus-blue: #0F4C81;
+    --careplus-teal: #007C91;
+    --careplus-slate: #0F172A;
   }
   
   body {
@@ -32,7 +32,7 @@
   background: #0F4C81;
 }
 
-/* MEDINEX Enterprise HIS Styling (Flat, Dense, High-Utility) */
+/* CarePlus Enterprise HIS Styling (Flat, Dense, High-Utility) */
 .saas-card {
   @apply bg-white border border-slate-200 rounded-md p-5 shadow-sm transition-shadow duration-150;
 }

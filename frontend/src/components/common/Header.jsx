@@ -27,7 +27,7 @@ export const Header = ({ title, subtitle }) => {
         <button
           onClick={() => setShowCommandPalette(true)}
           className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg text-xs text-slate-600 transition-colors shadow-xs"
-          title="Open MEDINEX Command Palette (Ctrl+K)"
+          title="Open CarePlus Command Palette (Ctrl+K)"
         >
           <Search className="w-3.5 h-3.5 text-[#0F4C81]" />
           <span className="hidden sm:inline font-medium">Search MRN or Module...</span>

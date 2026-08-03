@@ -109,7 +109,7 @@ export const AdminDashboard = () => {
       setIncidents(incidentsRes || []);
       setDepartments(deptRes || []);
     } catch (err) {
-      console.error('Failed to load MEDINEX operational data:', err);
+      console.error('Failed to load CarePlus operational data:', err);
     } finally {
       setLoading(false);
     }
@@ -222,7 +222,7 @@ export const AdminDashboard = () => {
   if (loading) {
     return (
       <div className="p-12 text-center text-slate-500 font-semibold animate-pulse">
-        Initializing MEDINEX Command Center (Enterprise HIS 500-Bed Facility System)...
+        Initializing CarePlus Command Center (Enterprise HIS 500-Bed Facility System)...
       </div>
     );
   }
@@ -297,7 +297,7 @@ export const AdminDashboard = () => {
     <div className="space-y-6">
       <Header
         title="Hospital Command Center (500-Bed Acute Care)"
-        subtitle="MEDINEX Enterprise HIS • Real-time clinical operations, bed capacity, surgery schedules, and TPA pre-authorizations."
+        subtitle="CarePlus Enterprise HIS • Real-time clinical operations, bed capacity, surgery schedules, and TPA pre-authorizations."
       />
 
       <div className="px-6 space-y-6">
@@ -444,7 +444,7 @@ export const AdminDashboard = () => {
                 <div><strong>Consultation Fee Rate:</strong> ₹{row?.consultation_fee || 1000}</div>
               </div>
             )}
-            exportFileName="medinex_patient_queue.csv"
+            exportFileName="careplus_patient_queue.csv"
           />
         )}
 
@@ -455,7 +455,7 @@ export const AdminDashboard = () => {
             subtitle="Review or approve medical insurance claims submitted by hospital TPA partners."
             columns={insuranceColumns}
             data={insuranceClaims}
-            exportFileName="medinex_insurance_claims.csv"
+            exportFileName="careplus_insurance_claims.csv"
           />
         )}
 
@@ -471,7 +471,7 @@ export const AdminDashboard = () => {
             subtitle="Monitor ongoing and scheduled surgeries across OT Suites 1-6."
             columns={surgeryColumns}
             data={surgeries}
-            exportFileName="medinex_ot_surgeries.csv"
+            exportFileName="careplus_ot_surgeries.csv"
           />
         )}
 
@@ -482,7 +482,7 @@ export const AdminDashboard = () => {
             subtitle="Review requested shift swaps submitted by medical specialists."
             columns={rosterColumns}
             data={rosterSwaps}
-            exportFileName="medinex_roster_swaps.csv"
+            exportFileName="careplus_roster_swaps.csv"
           />
         )}
       </div>

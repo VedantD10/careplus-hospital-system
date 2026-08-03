@@ -20,7 +20,7 @@ app.use(logger);
 app.get('/health', (req, res) => {
   res.json({
     status: 'ONLINE',
-    system: 'MEDINEX Enterprise Hospital Information System',
+    system: 'CarePlus Enterprise Hospital Information System',
     timestamp: new Date().toISOString()
   });
 });
@@ -52,7 +52,7 @@ if (require.main === module) {
   // Bind without host parameter so Node listens on dual-stack IPv4 + IPv6 (::)
   app.listen(PORT, () => {
     console.log(`=======================================================`);
-    console.log(`🏥 MEDINEX Enterprise HIS running on http://localhost:${PORT}`);
+    console.log(`🏥 CarePlus Enterprise HIS running on http://localhost:${PORT}`);
     console.log(`🏥 Also accessible at http://127.0.0.1:${PORT}`);
     console.log(`=======================================================`);
   });

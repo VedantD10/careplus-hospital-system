@@ -27,7 +27,7 @@ const ProtectedRoute = ({ children, allowedRoles = [] }) => {
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-900 text-white flex items-center justify-center font-semibold text-sm">
-        Initializing MEDINEX Enterprise HIS...
+        Initializing CarePlus Enterprise HIS...
       </div>
     );
   }
