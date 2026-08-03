@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --medinex-blue: #0F4C81;
+    --medinex-teal: #007C91;
+    --medinex-slate: #0F172A;
+  }
+  
+  body {
+    @apply bg-slate-100 text-slate-900 font-sans antialiased selection:bg-[#0F4C81] selection:text-white;
+    font-family: 'Inter', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0F4C81;
+}
+
+/* MEDINEX Enterprise HIS Styling (Flat, Dense, High-Utility) */
+.saas-card {
+  @apply bg-white border border-slate-200 rounded-md p-5 shadow-sm transition-shadow duration-150;
+}
+
+.saas-table {
+  @apply w-full border-collapse text-xs text-slate-800;
+}
+
+.saas-table th {
+  @apply px-3 py-2.5 text-left text-[11px] font-bold text-slate-600 uppercase tracking-wider bg-slate-100/90 border-b border-slate-200 select-none;
+}
+
+.saas-table td {
+  @apply px-3 py-2.5 text-xs text-slate-800 border-b border-slate-200/70 whitespace-nowrap;
+}
+
+.saas-btn-primary {
+  @apply bg-[#0F4C81] hover:bg-[#0c3d68] text-white font-semibold text-xs px-3.5 py-2 rounded transition-colors shadow-sm inline-flex items-center gap-1.5 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.saas-btn-secondary {
+  @apply bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 font-semibold text-xs px-3 py-1.5 rounded transition-colors shadow-sm inline-flex items-center gap-1.5;
+}
+
+.saas-btn-teal {
+  @apply bg-[#007C91] hover:bg-[#006577] text-white font-semibold text-xs px-3.5 py-2 rounded transition-colors shadow-sm inline-flex items-center gap-1.5;
+}
+
+.saas-input {
+  @apply w-full px-3 py-1.5 text-xs bg-white border border-slate-300 rounded text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-[#0F4C81] focus:border-[#0F4C81] transition-all;
+}
+
+/* Status Badges */
+.badge-scheduled {
+  @apply bg-blue-50 text-blue-800 border border-blue-200 font-semibold px-2 py-0.5 rounded text-[11px] inline-flex items-center gap-1;
+}
+.badge-checked-in {
+  @apply bg-amber-50 text-amber-900 border border-amber-300 font-semibold px-2 py-0.5 rounded text-[11px] inline-flex items-center gap-1;
+}
+.badge-in-consultation {
+  @apply bg-indigo-50 text-indigo-900 border border-indigo-200 font-semibold px-2 py-0.5 rounded text-[11px] inline-flex items-center gap-1;
+}
+.badge-completed {
+  @apply bg-emerald-50 text-emerald-900 border border-emerald-300 font-semibold px-2 py-0.5 rounded text-[11px] inline-flex items-center gap-1;
+}
+.badge-cancelled {
+  @apply bg-rose-50 text-rose-900 border border-rose-200 font-semibold px-2 py-0.5 rounded text-[11px] inline-flex items-center gap-1;
+}
+
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.12s ease-out forwards;
+}
