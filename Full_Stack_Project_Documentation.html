@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CarePlus Hospital Management System - Full Stack Project Documentation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap');
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #1e293b;
+      background: #f8fafc;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      height: 297mm;
+      padding: 20mm 20mm 20mm 20mm;
+      position: relative;
+      background: #ffffff;
+      page-break-after: always;
+      page-break-inside: avoid;
+      overflow: hidden;
+    }
+
+    /* Cover Page styling */
+    .cover-page {
+      background: linear-gradient(135deg, #0a192f 0%, #102a71 50%, #1e3a8a 100%);
+      color: #ffffff;
+      padding: 25mm 20mm 20mm 20mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cover-header {
+      display: flex;
+      items-center: center;
+      gap: 12px;
+    }
+
+    .cover-logo-icon {
+      width: 42px;
+      height: 42px;
+      background: #2563eb;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #ffffff;
+      font-size: 20px;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    }
+
+    .cover-brand-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .cover-brand-sub {
+      font-size: 11px;
+      color: #93c5fd;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .cover-pill {
+      display: inline-block;
+      background: rgba(59, 130, 246, 0.2);
+      border: 1px solid rgba(147, 197, 253, 0.3);
+      color: #93c5fd;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .cover-main-title {
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin: 0 0 10px 0;
+      color: #ffffff;
+    }
+
+    .cover-main-sub {
+      font-size: 16px;
+      color: #cbd5e1;
+      font-weight: 400;
+      margin: 0 0 35px 0;
+    }
+
+    .cover-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 24px;
+    }
+
+    .cover-field-title {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #94a3b8;
+      margin-bottom: 4px;
+    }
+
+    .cover-field-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .cover-code-badge {
+      display: inline-block;
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      color: #60a5fa;
+    }
+
+    .cover-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    /* Page Header & Footer */
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #2563eb;
+      margin-bottom: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #1e40af;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .page-footer {
+      position: absolute;
+      bottom: 15mm;
+      left: 20mm;
+      right: 20mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 10px;
+    }
+
+    /* Typography & Components */
+    h2.section-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 0 0 16px 0;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .section-badge {
+      background: #1e40af;
+      color: #ffffff;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    h3.sub-heading {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin: 14px 0 8px 0;
+    }
+
+    p {
+      margin: 0 0 10px 0;
+      color: #334155;
+    }
+
+    /* Grid Cards */
+    .card-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .card-grid-4 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .info-card-header {
+      font-weight: 700;
+      font-size: 12px;
+      color: #0f172a;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .info-card-body {
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    /* Tables */
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 11px;
+    }
+
+    table.data-table th {
+      background: #1e40af;
+      color: #ffffff;
+      font-weight: 700;
+      text-align: left;
+      padding: 8px 10px;
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    table.data-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
+      vertical-align: top;
+    }
+
+    table.data-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .badge-status {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .status-implemented {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .code-span {
+      font-family: 'Fira Code', monospace;
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-size: 10.5px;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* Workflow Step Vertical List */
+    .workflow-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .workflow-step {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .workflow-num {
+      background: #2563eb;
+      color: #ffffff;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 11px;
+      shrink: 0;
+    }
+
+    .workflow-text {
+      font-size: 11px;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .workflow-arrow {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 12px;
+      margin: -4px 0;
+    }
+
+    /* Code Box */
+    .code-box {
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: 'Fira Code', monospace;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 10.5px;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    .code-box .comment { color: #64748b; }
+    .code-box .keyword { color: #38bdf8; }
+    .code-box .string { color: #4ade80; }
+
+    /* TOC items */
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 24px;
+    }
+
+    .toc-item {
+      border-bottom: 1px dotted #cbd5e1;
+      padding-bottom: 4px;
+    }
+
+    .toc-title {
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 12px;
+    }
+
+    .toc-sub {
+      font-size: 10.5px;
+      color: #64748b;
+      margin-left: 8px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1: COVER PAGE -->
+  <div class="page cover-page">
+    <div>
+      <div class="cover-header">
+        <div class="cover-logo-icon">🏥</div>
+        <div>
+          <div class="cover-brand-title">CAREPLUS HOSPITAL</div>
+          <div class="cover-brand-sub">Enterprise Healthcare Systems</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 45mm;">
+        <div class="cover-pill">Official Technical Specification & System Architecture</div>
+        <h1 class="cover-main-title">CarePlus Hospital Management System</h1>
+        <div class="cover-main-sub">Full Stack Enterprise Project Documentation & Implementation Report</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="cover-card">
+        <div>
+          <div class="cover-field-title">Project Title</div>
+          <div class="cover-field-value">Hospital Management System (CarePlus HMS)</div>
+        </div>
+        <div>
+          <div class="cover-field-title">Client / Organization</div>
+          <div class="cover-field-value">CarePlus Hospital</div>
+        </div>
+        <div>
+          <div class="cover-field-title">Prepared By</div>
+          <div class="cover-field-value">Vedant</div>
+        </div>
+        <div>
+          <div class="cover-field-title">Program Submission</div>
+          <div class="cover-field-value">VESA Skill Development Program</div>
+        </div>
+        <div>
+          <div class="cover-field-title">Document Version</div>
+          <div class="cover-field-value">v1.0.0 (Enterprise Release)</div>
+        </div>
+        <div>
+          <div class="cover-field-title">Date of Submission</div>
+          <div class="cover-field-value">August 5, 2026</div>
+        </div>
+        <div>
+          <div class="cover-field-title">Repository Name</div>
+          <div class="cover-code-badge">VedantD10/careplus-hospital-system</div>
+        </div>
+        <div>
+          <div class="cover-field-title">Staging & REST Base URL</div>
+          <div class="cover-code-badge">http://localhost:3000 / /api</div>
+        </div>
+      </div>
+
+      <div class="cover-footer" style="margin-top: 25px;">
+        <span>Confidential - Prepared for VESA Skill Development Program</span>
+        <span>CarePlus Hospital Enterprise Systems</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 2: TABLE OF CONTENTS -->
+  <div class="page">
+    <div class="page-header">
+      <span>CAREPLUS HOSPITAL MANAGEMENT SYSTEM (HMS)</span>
+      <span>Full Stack Project Documentation | VESA Program</span>
+    </div>
+
+    <h2 class="section-heading" style="margin-bottom: 25px;">📑 Table of Contents</h2>
+
+    <div class="info-card" style="padding: 20px;">
+      <div class="toc-grid">
+        <div>
+          <div class="toc-item">
+            <div class="toc-title">1. Project Overview</div>
+            <div class="toc-sub">1.1 Purpose & Mission</div>
+            <div class="toc-sub">1.2 Objectives</div>
+            <div class="toc-sub">1.3 Hospital Industry Problem Statement</div>
+            <div class="toc-sub">1.4 Implemented Enterprise Solution</div>
+          </div>
+
+          <div class="toc-item" style="margin-top: 14px;">
+            <div class="toc-title">2. Client Requirements</div>
+            <div class="toc-sub">2.1 Business Problems & Objectives</div>
+            <div class="toc-sub">2.2 Stakeholder Roles & Access Matrix</div>
+            <div class="toc-sub">2.3 Business Rules & Constraints</div>
+            <div class="toc-sub">2.4 End-to-End Hospital Workflow</div>
+            <div class="toc-sub">2.5 Requirement Traceability Table</div>
+          </div>
+
+          <div class="toc-item" style="margin-top: 14px;">
+            <div class="toc-title">3. System Architecture</div>
+            <div class="toc-sub">3.1 Component Architecture</div>
+            <div class="toc-sub">3.2 Core Architectural Execution Flows</div>
+          </div>
+
+          <div class="toc-item" style="margin-top: 14px;">
+            <div class="toc-title">4. Technologies Used</div>
+            <div class="toc-sub">4.1 Technology Stack Matrix</div>
+            <div class="toc-sub">4.2 Architecture Rationale</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="toc-item">
+            <div class="toc-title">5. Database Design</div>
+            <div class="toc-sub">5.1 Dual-Driver Architecture</div>
+            <div class="toc-sub">5.2 Relational Schema (12 Tables)</div>
+          </div>
+
+          <div class="toc-item" style="margin-top: 14px;">
+            <div class="toc-title">6. REST API Overview</div>
+            <div class="toc-sub">6.1 Authentication API Group</div>
+            <div class="toc-sub">6.2 Patient Management API Group</div>
+            <div class="toc-sub">6.3 Doctor & Staff Management API Group</div>
+            <div class="toc-sub">6.4 Department & Appointment API Groups</div>
+            <div class="toc-sub">6.5 Medical Record & EHR API Group</div>
+            <div class="toc-sub">6.6 Billing, Reports & Audit API Groups</div>
+          </div>
+
+          <div class="toc-item" style="margin-top: 14px;">
+            <div class="toc-title">7. Codebase Folder Structure</div>
+            <div class="toc-sub">7.1 Directory Tree</div>
+          </div>
+
+          <div class="toc-item" style="margin-top: 14px;">
+            <div class="toc-title">8-10. Interfaces, Security & Conclusion</div>
+            <div class="toc-sub">8. Application Interfaces & Screenshots</div>
+            <div class="toc-sub">9. Security & Technical Architecture</div>
+            <div class="toc-sub">10. Solved Outcomes & Conclusion</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>CarePlus Hospital Enterprise Systems</span>
+      <span>Page 2 of 11</span>
+    </div>
+  </div>
+
+  <!-- PAGE 3: 1. PROJECT OVERVIEW -->
+  <div class="page">
+    <div class="page-header">
+      <span>CAREPLUS HOSPITAL MANAGEMENT SYSTEM (HMS)</span>
+      <span>Full Stack Project Documentation | VESA Program</span>
+    </div>
+
+    <h2 class="section-heading"><span class="section-badge">1</span> Project Overview</h2>
+
+    <h3 class="sub-heading">1.1 Purpose & Mission</h3>
+    <p>The <strong>CarePlus Hospital Management System (HMS)</strong> is a full-stack, enterprise-grade clinical management web platform designed to digitize healthcare workflows, streamline administrative operations, optimize physician schedules, protect patient confidentiality, automate medical billing, and deliver real-time operational analytics for CarePlus Hospital.</p>
+
+    <h3 class="sub-heading">1.2 Objectives</h3>
+    <ul style="margin: 0 0 16px 0; padding-left: 20px; color: #334155;">
+      <li><strong>Operational Efficiency:</strong> Eliminate paper-based patient intake, physical register logs, and manual billing calculations.</li>
+      <li><strong>Double-Booking Prevention:</strong> Enforce strict, conflict-free 30-minute doctor consultation scheduling algorithms.</li>
+      <li><strong>Electronic Health Records (EHR):</strong> Secure medical diagnoses, vitals monitoring, and automated PDF prescription (Rx) generation.</li>
+      <li><strong>Role-Based Access Control:</strong> Enforce granular role separation so that receptionists cannot access confidential medical diagnoses, while doctors manage clinical queue items and administrators oversee hospital financials.</li>
+      <li><strong>High Availability:</strong> Provide a zero-downtime dual-driver database abstraction system (local SQLite fallback for development and serverless edge deployment, with MySQL 8.0 for production scale).</li>
+    </ul>
+
+    <h3 class="sub-heading">1.3 Hospital Industry Problem Statement</h3>
+    <div class="card-grid-2">
+      <div class="info-card" style="border-left: 4px solid #3b82f6;">
+        <div class="info-card-header">⏳ 1. Queue Congestion & Delays</div>
+        <div class="info-card-body">Unstructured appointment booking leads to crowded waiting rooms, overlapping patient visits, and frustrated physicians.</div>
+      </div>
+      <div class="info-card" style="border-left: 4px solid #eab308;">
+        <div class="info-card-header">⚠️ 2. Medical Error Risks</div>
+        <div class="info-card-body">Handwritten prescriptions and physical paper charts increase diagnostic ambiguity and risk loss of critical medical histories.</div>
+      </div>
+      <div class="info-card" style="border-left: 4px solid #10b981;">
+        <div class="info-card-header">💸 3. Revenue Leakage</div>
+        <div class="info-card-body">Manual billing calculation often fails to capture consultation fees, taxes, and service charges accurately.</div>
+      </div>
+      <div class="info-card" style="border-left: 4px solid #6366f1;">
+        <div class="info-card-header">🔒 4. Data Privacy Vulnerabilities</div>
+        <div class="info-card-body">Paper medical records are susceptible to unauthorized exposure, lacking role-based permission controls and audit trails.</div>
+      </div>
+    </div>
+
+    <h3 class="sub-heading">1.4 Implemented Enterprise Solution</h3>
+    <p>CarePlus HMS addresses these challenges through a modern single-page application architecture built with <strong>React 18, Tailwind CSS, Node.js, Express.js</strong>, and a <strong>Dual-Driver Relational Database (SQLite / MySQL 8.0)</strong>:</p>
+
+    <ul style="margin: 0; padding-left: 20px; color: #334155;">
+      <li><strong>Centralized Intake:</strong> Automated Medical Record Number (<span class="code-span">MRN</span>) assignment (<span class="code-span">MRN-YYYYMMDD-XXXX</span>) upon patient registration.</li>
+      <li><strong>Automated Scheduling Matrix:</strong> Real-time 30-minute doctor slot availability checker filtering out approved physician leaves and existing bookings.</li>
+      <li><strong>Digital EHR & Rx Builder:</strong> Interactive doctor consultation desk generating standardized digital prescriptions and PDF invoices.</li>
+      <li><strong>Real-Time Audit Trail:</strong> Automated system logging for all critical operations (<span class="code-span">BOOK_APPOINTMENT</span>, <span class="code-span">ISSUE_PRESCRIPTION</span>, <span class="code-span">SETTLE_BILL</span>).</li>
+    </ul>
+
+    <div class="page-footer">
+      <span>CarePlus Hospital Enterprise Systems</span>
+      <span>Page 3 of 11</span>
+    </div>
+  </div>
+
+  <!-- PAGE 4: 2. CLIENT REQUIREMENTS -->
+  <div class="page">
+    <div class="page-header">
+      <span>CAREPLUS HOSPITAL MANAGEMENT SYSTEM (HMS)</span>
+      <span>Full Stack Project Documentation | VESA Program</span>
+    </div>
+
+    <h2 class="section-heading"><span class="section-badge">2</span> Understanding of Client Requirements</h2>
+
+    <h3 class="sub-heading">2.1 Business Problems & Objectives</h3>
+    <p>Traditional healthcare facility operations suffer from slow paper-based intake, frequent scheduling collisions, and lack of real-time administrative oversight. The platform delivers a unified multi-role web application for <span class="code-span">ADMIN</span>, <span class="code-span">DOCTOR</span>, <span class="code-span">RECEPTIONIST</span>, and <span class="code-span">PATIENT</span> users.</p>
+
+    <h3 class="sub-heading">2.2 Stakeholder Roles & Access Matrix</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Stakeholder Role</th>
+          <th>System Responsibilities & Scope</th>
+          <th>Access Restrictions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>👑 ADMINISTRATOR</strong><br><span class="code-span">ADMIN</span></td>
+          <td>Full system oversight, department & doctor setup, fee matrices, audit log inspection, executive analytics dashboard.</td>
+          <td>Unrestricted administrative access.</td>
+        </tr>
+        <tr>
+          <td><strong>🩺 DOCTOR</strong><br><span class="code-span">DOCTOR</span></td>
+          <td>Daily appointment queue, patient EHR chart access, vitals recording, medical diagnosis, prescription PDF generation, leave requests.</td>
+          <td>Restricted to assigned patient queue & clinical records.</td>
+        </tr>
+        <tr>
+          <td><strong>📋 RECEPTIONIST</strong><br><span class="code-span">RECEPTIONIST</span></td>
+          <td>Patient registration with auto MRN, walk-in appointment booking, physical arrival check-in, token number assignment, bill payment collection.</td>
+          <td>Strictly forbidden from viewing medical diagnosis & notes.</td>
+        </tr>
+        <tr>
+          <td><strong>👤 PATIENT</strong><br><span class="code-span">PATIENT</span></td>
+          <td>Self-service registration, online appointment booking, slot rescheduling, profile management, viewing health history, downloading PDF Rx & invoices.</td>
+          <td>Restricted exclusively to personal records.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub-heading">2.3 Business Rules & Constraints</h3>
+    <ol style="margin: 0 0 16px 0; padding-left: 20px; color: #334155;">
+      <li><strong>MRN Format:</strong> Generated automatically as <span class="code-span">MRN-YYYYMMDD-XXXX</span> (e.g., <span class="code-span">MRN-20260805-0014</span>).</li>
+      <li><strong>Consultation Slot Duration:</strong> Standardized 30-minute intervals operating strictly within doctor schedule hours (e.g., 09:00 AM to 05:00 PM).</li>
+      <li><strong>Queue Token Numbers:</strong> Sequential daily integer sequence (<span class="code-span">1, 2, 3...</span>) assigned per doctor for each date.</li>
+      <li><strong>Billing & Tax Processing:</strong> Automatic 10% government healthcare tax applied to doctor consultation fees upon appointment completion. Invoice format: <span class="code-span">INV-YYYYMMDD-XXXX</span>.</li>
+      <li><strong>Role View Restrictions:</strong> Receptionists have zero access to <span class="code-span">symptoms</span>, <span class="code-span">diagnosis</span>, or <span class="code-span">treatment_notes</span>.</li>
+    </ol>
+
+    <h3 class="sub-heading">2.4 End-to-End Hospital Care Workflow</h3>
+    <div class="workflow-container">
+      <div class="workflow-step">
+        <div class="workflow-num">1</div>
+        <div class="workflow-text"><strong>Patient Intake / Registration:</strong> Patient creates account or front-desk registers patient with auto-generated MRN.</div>
+      </div>
+      <div class="workflow-arrow">▼</div>
+      <div class="workflow-step">
+        <div class="workflow-num">2</div>
+        <div class="workflow-text"><strong>Appointment Booking & Slot Selection:</strong> System checks 30-min slot availability, doctor leaves, and slot collisions.</div>
+      </div>
+      <div class="workflow-arrow">▼</div>
+      <div class="workflow-step">
+        <div class="workflow-num">3</div>
+        <div class="workflow-text"><strong>Front-Desk Arrival Check-In:</strong> Receptionist verifies patient arrival, marks status <span class="code-span">CHECKED_IN</span>, and issues queue token.</div>
+      </div>
+      <div class="workflow-arrow">▼</div>
+      <div class="workflow-step">
+        <div class="workflow-num">4</div>
+        <div class="workflow-text"><strong>Doctor Clinical Workstation & EHR Entry:</strong> Physician reviews queue, records vitals (BP, pulse, temp, weight), diagnosis & medicines.</div>
+      </div>
+      <div class="workflow-arrow">▼</div>
+      <div class="workflow-step">
+        <div class="workflow-num">5</div>
+        <div class="workflow-text"><strong>Auto-Invoicing & Payment Settlement:</strong> Appointment completion automatically triggers Tax Invoice creation with payment processing.</div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>CarePlus Hospital Enterprise Systems</span>
+      <span>Page 4 of 11</span>
+    </div>
+  </div>
+
+  <!-- PAGE 5: 2.5 TRACEABILITY & 3. ARCHITECTURE -->
+  <div class="page">
+    <div class="page-header">
+      <span>CAREPLUS HOSPITAL MANAGEMENT SYSTEM (HMS)</span>
+      <span>Full Stack Project Documentation | VESA Program</span>
+    </div>
+
+    <h3 class="sub-heading">2.5 Requirement Traceability & Mapping Table</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Requirement Description</th>
+          <th>Status</th>
+          <th>Location in Codebase</th>
+          <th>Verification Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>User Auth & Role Resolution</td>
+          <td><span class="badge-status status-implemented">IMPLEMENTED</span></td>
+          <td><span class="code-span">backend/src/controllers/authController.js</span><br><span class="code-span">frontend/src/context/AuthContext.jsx</span></td>
+          <td>Authenticates email/password, returns JWT token, hydates role context.</td>
+        </tr>
+        <tr>
+          <td>Patient MRN Generation</td>
+          <td><span class="badge-status status-implemented">IMPLEMENTED</span></td>
+          <td><span class="code-span">backend/src/controllers/patientController.js#L25</span></td>
+          <td>Auto-formats MRN string as <span class="code-span">MRN-YYYYMMDD-XXXX</span>.</td>
+        </tr>
+        <tr>
+          <td>Doctor Slot Calculation</td>
+          <td><span class="badge-status status-implemented">IMPLEMENTED</span></td>
+          <td><span class="code-span">backend/src/controllers/appointmentController.js#L30</span></td>
+          <td>Filters out approved doctor leaves and booked slots.</td>
+        </tr>
+        <tr>
+          <td>Appointment Conflict Guard</td>
+          <td><span class="badge-status status-implemented">IMPLEMENTED</span></td>
+          <td><span class="code-span">backend/src/controllers/appointmentController.js#L193</span></td>
+          <td>Returns HTTP 409 Conflict if slot is already occupied.</td>
+        </tr>
+        <tr>
+          <td>Arrival Check-In & Tokens</td>
+          <td><span class="badge-status status-implemented">IMPLEMENTED</span></td>
+          <td><span class="code-span">frontend/src/pages/Receptionist/CheckInCounter.jsx</span></td>
+          <td>Updates status to <span class="code-span">CHECKED_IN</span> & displays daily token.</td>
+        </tr>
+        <tr>
+          <td>Clinical EHR & Vitals Logging</td>
+          <td><span class="badge-status status-implemented">IMPLEMENTED</span></td>
+          <td><span class="code-span">backend/src/controllers/medicalRecordController.js#L10</span></td>
+          <td>Records BP, pulse, temp, weight, symptoms, diagnosis.</td>
+        </tr>
+        <tr>
+          <td>Prescription PDF Generation</td>
+          <td><span class="badge-status status-implemented">IMPLEMENTED</span></td>
+          <td><span class="code-span">frontend/src/components/common/PrescriptionPDFModal.jsx</span></td>
+          <td>Printable prescription modal with medicine table.</td>
+        </tr>
+        <tr>
+          <td>Auto-Billing on Completion</td>
+          <td><span class="badge-status status-implemented">IMPLEMENTED</span></td>
+          <td><span class="code-span">backend/src/controllers/appointmentController.js#L277</span></td>
+          <td>Calculates fee + 10% tax, generates invoice <span class="code-span">INV-YYYYMMDD-XXXX</span>.</td>
+        </tr>
+        <tr>
+          <td>Bill Payment Settlement</td>
+          <td><span class="badge-status status-implemented">IMPLEMENTED</span></td>
+          <td><span class="code-span">backend/src/controllers/billingController.js#L55</span></td>
+          <td>Settles bill status PAID via Cash, Card, Insurance, Online.</td>
+        </tr>
+        <tr>
+          <td>Executive Analytics & Reports</td>
+          <td><span class="badge-status status-implemented">IMPLEMENTED</span></td>
+          <td><span class="code-span">backend/src/controllers/reportController.js#L5</span></td>
+          <td>Computes revenue, total patients, doctor performance.</td>
+        </tr>
+        <tr>
+          <td>System Audit Trail Logging</td>
+          <td><span class="badge-status status-implemented">IMPLEMENTED</span></td>
+          <td><span class="code-span">backend/src/services/auditService.js</span></td>
+          <td>Inserts structured audit logs for all state changes.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="section-heading" style="margin-top: 20px;"><span class="section-badge">3</span> System Architecture</h2>
+
+    <h3 class="sub-heading">3.1 Component Architecture</h3>
+    <div class="card-grid-2">
+      <div class="info-card" style="border-top: 3px solid #2563eb;">
+        <div class="info-card-header">💻 Client Frontend Layer</div>
+        <div class="info-card-body"><strong>React 18 + Vite + Tailwind CSS</strong><br>Single-page web client providing role-gated dashboards, real-time forms, interactive EHR modals, and responsive views.</div>
+      </div>
+      <div class="info-card" style="border-top: 3px solid #059669;">
+        <div class="info-card-header">⚙️ REST API Router Layer</div>
+        <div class="info-card-body"><strong>Node.js + Express.js Framework</strong><br>22 RESTful endpoint routers handling client requests, payload sanitization, controller logic, and HTTP status responses.</div>
+      </div>
+      <div class="info-card" style="border-top: 3px solid #d97706;">
+        <div class="info-card-header">🛡️ Security & Auth Middleware</div>
+        <div class="info-card-body"><strong>JWT + BCrypt Cryptography</strong><br>Stateless session verification, role-based access control (RBAC), password hashing, and audit event dispatchers.</div>
+      </div>
+      <div class="info-card" style="border-top: 3px solid #7c3aed;">
+        <div class="info-card-header">🗄️ Relational Database Engine</div>
+        <div class="info-card-body"><strong>Dual-Driver: SQLite3 / MySQL 8.0</strong><br>Abstracted connection wrapper (<span class="code-span">db.js</span>) dynamically executing parameterized SQL queries across dev & production.</div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>CarePlus Hospital Enterprise Systems</span>
+      <span>Page 5 of 11</span>
+    </div>
+  </div>
+
+  <!-- PAGE 6: 3.2 ARCHITECTURAL EXECUTION FLOWS -->
+  <div class="page">
+    <div class="page-header">
+      <span>CAREPLUS HOSPITAL MANAGEMENT SYSTEM (HMS)</span>
+      <span>Full Stack Project Documentation | VESA Program</span>
+    </div>
+
+    <h3 class="sub-heading">3.2 Core Architectural Execution Flows</h3>
+
+    <p><strong>1. Authentication & Authorization Flow:</strong></p>
+    <div class="code-box">[User Browser] ---> (POST /api/auth/login) ---> [Auth Controller] ---> (SELECT * FROM users WHERE email=?)
+                                                                                │
+[JWT Stored in LocalStorage] <--- (Token + User Payload) <--- [BCrypt.compare Check] ◄┘</div>
+
+    <p><strong>2. Appointment Slot Collision Guard:</strong></p>
+    <div class="code-box">[Patient / Receptionist] ---> Select Doctor & Slot ---> (POST /api/appointments)
+                                                                │
+                                                     (Collision Query & Transaction)
+                                                                │
+[Appointment & Token Created] <--- (HTTP 201) <------------------┴---> (HTTP 409 Conflict if Booked)</div>
+
+    <p><strong>3. Medical Record & Invoice Auto-Generation:</strong></p>
+    <div class="code-box">[Doctor Workstation] ---> Submit Diagnosis & Rx ---> (POST /api/medical-records)
+                                                                │
+                                                (INSERT Record, UPDATE Status COMPLETED)
+                                                                │
+[Printable PDF Modal] <--- (Auto Tax Invoice INV-...) <────────┴---> [Audit Log: ISSUE_PRESCRIPTION]</div>
+
+    <div class="page-footer">
+      <span>CarePlus Hospital Enterprise Systems</span>
+      <span>Page 6 of 11</span>
+    </div>
+  </div>
+
+  <!-- PAGE 7: 4. TECHNOLOGIES USED & 5. DATABASE DESIGN -->
+  <div class="page">
+    <div class="page-header">
+      <span>CAREPLUS HOSPITAL MANAGEMENT SYSTEM (HMS)</span>
+      <span>Full Stack Project Documentation | VESA Program</span>
+    </div>
+
+    <h2 class="section-heading"><span class="section-badge">4</span> Technologies Used</h2>
+
+    <h3 class="sub-heading">4.1 Technology Stack Matrix</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Layer / Domain</th>
+          <th>Technology</th>
+          <th>Version</th>
+          <th>Purpose & Architecture Rationale</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Frontend Core</td><td>React</td><td><span class="code-span">18.3.1</span></td><td>Component-driven SPA framework with declarative state management.</td></tr>
+        <tr><td>Build System</td><td>Vite</td><td><span class="code-span">5.2.11</span></td><td>Lightning-fast HMR bundler optimized for ES modules.</td></tr>
+        <tr><td>Styling & UI</td><td>Tailwind CSS</td><td><span class="code-span">3.4.3</span></td><td>Utility-first CSS engine delivering responsive design and dark mode.</td></tr>
+        <tr><td>Icon Suite</td><td>Lucide React</td><td><span class="code-span">0.380.0</span></td><td>Healthcare and UI SVG icon library.</td></tr>
+        <tr><td>Data Charts</td><td>Recharts</td><td><span class="code-span">2.12.7</span></td><td>Composited SVG charts for analytics dashboards.</td></tr>
+        <tr><td>Backend Runtime</td><td>Node.js</td><td><span class="code-span">24.18.1</span></td><td>Asynchronous event-driven I/O engine for REST services.</td></tr>
+        <tr><td>Web Server Framework</td><td>Express.js</td><td><span class="code-span">4.19.2</span></td><td>Minimalist HTTP routing middleware framework.</td></tr>
+        <tr><td>Authentication</td><td>JsonWebToken</td><td><span class="code-span">9.0.2</span></td><td>Stateless JWT token issuance & authorization verification.</td></tr>
+        <tr><td>Password Security</td><td>BCryptJS</td><td><span class="code-span">2.4.3</span></td><td>One-way salted password hashing algorithm (10 rounds).</td></tr>
+        <tr><td>Input Sanitization</td><td>Express Validator</td><td><span class="code-span">7.1.0</span></td><td>Declarative request payload validation middleware.</td></tr>
+        <tr><td>Database (Production)</td><td>MySQL 8.0</td><td><span class="code-span">3.9.8</span></td><td>Relational database engine with ACID compliance and foreign key safety.</td></tr>
+        <tr><td>Database (Dev/Edge)</td><td>SQLite3</td><td><span class="code-span">5.1.7</span></td><td>Zero-configuration file-based database fallback engine.</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub-heading">4.2 Technical Justifications & Architecture Selection</h3>
+    <ol style="margin: 0 0 16px 0; padding-left: 20px; color: #334155;">
+      <li><strong>Dual-Driver Relational Abstraction (<span class="code-span">db.js</span>):</strong> Designed specifically to guarantee deployment versatility. The database module automatically selects MySQL if connection credentials exist, seamlessly falling back to a local file-based SQLite database or an in-memory fallback driver for zero-dependency serverless execution on platforms like Vercel and AWS Lambda.</li>
+      <li><strong>Tailwind CSS Utility Design System:</strong> Enables a consistent corporate aesthetic using curated primary blue colors (<span class="code-span">#1e40af</span>, <span class="code-span">#3b82f6</span>), smooth gradients, glassmorphism cards, status badges, and native dark mode themes without external heavy framework overhead.</li>
+    </ol>
+
+    <h2 class="section-heading"><span class="section-badge">5</span> Database Design</h2>
+
+    <h3 class="sub-heading">5.1 Dual-Driver Architecture</h3>
+    <p>The database connection manager (<span class="code-span">backend/src/config/db.js</span>) utilizes an abstract wrapper function <span class="code-span">db.query(sql, params)</span> that automatically translates SQL queries between MySQL standard syntax and SQLite standard syntax (e.g., converting <span class="code-span">AUTO_INCREMENT</span> to <span class="code-span">AUTOINCREMENT</span>).</p>
+
+    <div class="page-footer">
+      <span>CarePlus Hospital Enterprise Systems</span>
+      <span>Page 7 of 11</span>
+    </div>
+  </div>
+
+  <!-- PAGE 8: 5.2 SCHEMA BREAKDOWN -->
+  <div class="page">
+    <div class="page-header">
+      <span>CAREPLUS HOSPITAL MANAGEMENT SYSTEM (HMS)</span>
+      <span>Full Stack Project Documentation | VESA Program</span>
+    </div>
+
+    <h3 class="sub-heading">5.2 Database Relational Schema Breakdown (12 Entities)</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Entity Name</th>
+          <th>Primary / Foreign Keys</th>
+          <th>Key Attributes & Constraints</th>
+          <th>Domain Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="code-span">users</span></td><td>PK: <span class="code-span">id</span></td><td><span class="code-span">email</span> (UK), <span class="code-span">password_hash</span>, <span class="code-span">role</span>, <span class="code-span">status</span></td><td>System authentication accounts.</td></tr>
+        <tr><td><span class="code-span">departments</span></td><td>PK: <span class="code-span">id</span></td><td><span class="code-span">name</span> (UK), <span class="code-span">description</span>, <span class="code-span">icon</span>, <span class="code-span">location_floor</span></td><td>Hospital specialty departments.</td></tr>
+        <tr><td><span class="code-span">doctors</span></td><td>PK: <span class="code-span">id</span><br>FK: <span class="code-span">user_id</span>, <span class="code-span">department_id</span></td><td><span class="code-span">full_name</span>, <span class="code-span">qualification</span>, <span class="code-span">specialization</span>, <span class="code-span">consultation_fee</span></td><td>Physician clinical profiles.</td></tr>
+        <tr><td><span class="code-span">receptionists</span></td><td>PK: <span class="code-span">id</span><br>FK: <span class="code-span">user_id</span></td><td><span class="code-span">full_name</span>, <span class="code-span">phone</span>, <span class="code-span">desk_number</span></td><td>Front-desk administrative staff.</td></tr>
+        <tr><td><span class="code-span">patients</span></td><td>PK: <span class="code-span">id</span><br>FK: <span class="code-span">user_id</span> (optional)</td><td><span class="code-span">mrn</span> (UK: <span class="code-span">MRN-YYYYMMDD-XXXX</span>), <span class="code-span">dob</span>, <span class="code-span">blood_group</span>, <span class="code-span">allergies</span></td><td>Patient demographic records.</td></tr>
+        <tr><td><span class="code-span">doctor_schedules</span></td><td>PK: <span class="code-span">id</span><br>FK: <span class="code-span">doctor_id</span></td><td><span class="code-span">day_of_week</span>, <span class="code-span">start_time</span>, <span class="code-span">end_time</span>, <span class="code-span">slot_duration_mins</span></td><td>Physician shift working hours.</td></tr>
+        <tr><td><span class="code-span">doctor_leaves</span></td><td>PK: <span class="code-span">id</span><br>FK: <span class="code-span">doctor_id</span></td><td><span class="code-span">leave_date</span>, <span class="code-span">reason</span>, <span class="code-span">status</span> (PENDING/APPROVED)</td><td>Doctor time-off leave tracking.</td></tr>
+        <tr><td><span class="code-span">appointments</span></td><td>PK: <span class="code-span">id</span><br>FK: <span class="code-span">patient_id</span>, <span class="code-span">doctor_id</span></td><td><span class="code-span">appointment_date</span>, <span class="code-span">start_time</span>, <span class="code-span">status</span>, <span class="code-span">token_number</span></td><td>Core booking & queue records.</td></tr>
+        <tr><td><span class="code-span">medical_records</span></td><td>PK: <span class="code-span">id</span><br>FK: <span class="code-span">appointment_id</span> (UK)</td><td><span class="code-span">symptoms</span>, <span class="code-span">diagnosis</span>, <span class="code-span">vitals_bp</span>, <span class="code-span">vitals_temp</span>, <span class="code-span">vitals_pulse</span></td><td>Clinical consultation EHR charts.</td></tr>
+        <tr><td><span class="code-span">prescriptions</span></td><td>PK: <span class="code-span">id</span><br>FK: <span class="code-span">medical_record_id</span></td><td><span class="code-span">notes</span>, child items in <span class="code-span">prescription_items</span></td><td>Pharmaceutical prescriptions.</td></tr>
+        <tr><td><span class="code-span">bills</span></td><td>PK: <span class="code-span">id</span><br>FK: <span class="code-span">appointment_id</span> (UK)</td><td><span class="code-span">invoice_number</span> (UK), <span class="code-span">consultation_fee</span>, <span class="code-span">tax_amount</span> (10%), <span class="code-span">total_amount</span></td><td>Financial invoices & receipts.</td></tr>
+        <tr><td><span class="code-span">audit_logs</span></td><td>PK: <span class="code-span">id</span></td><td><span class="code-span">user_id</span>, <span class="code-span">role</span>, <span class="code-span">action</span>, <span class="code-span">entity</span>, <span class="code-span">details</span>, <span class="code-span">ip_address</span></td><td>Immutable audit trail system.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="page-footer">
+      <span>CarePlus Hospital Enterprise Systems</span>
+      <span>Page 8 of 11</span>
+    </div>
+  </div>
+
+  <!-- PAGE 9: 6. REST API OVERVIEW -->
+  <div class="page">
+    <div class="page-header">
+      <span>CAREPLUS HOSPITAL MANAGEMENT SYSTEM (HMS)</span>
+      <span>Full Stack Project Documentation | VESA Program</span>
+    </div>
+
+    <h2 class="section-heading"><span class="section-badge">6</span> REST API Overview</h2>
+    <p>The backend exposes <strong>22 RESTful API endpoints</strong> categorized into 10 functional route modules. All protected endpoints require a valid JWT Bearer token passed via the <span class="code-span">Authorization: Bearer &lt;token&gt;</span> HTTP request header.</p>
+
+    <h3 class="sub-heading">6.1 Authentication API Group ( <span class="code-span">/api/auth</span> )</h3>
+    <p><span class="badge-status status-implemented">POST</span> <span class="code-span">/api/auth/login</span> - Authenticates credentials & returns JWT payload.</p>
+    <div class="code-box">// Request Payload: { "email": "dr.smith@careplus.com", "password": "password123" }
+// Response (200 OK): { "success": true, "token": "eyJhbGci...", "user": { "id": 2, "role": "DOCTOR" } }</div>
+
+    <p><span class="badge-status status-implemented">POST</span> <span class="code-span">/api/auth/register-patient</span> - Self-registration for new patient accounts with auto-MRN.</p>
+    <p><span class="badge-status status-implemented">GET</span> <span class="code-span">/api/auth/me</span> - Hydrates active user profile context from JWT token.</p>
+
+    <h3 class="sub-heading">6.2 Patient Management API Group ( <span class="code-span">/api/patients</span> )</h3>
+    <p><span class="badge-status status-implemented">GET</span> <span class="code-span">/api/patients</span> - Fetches list of registered patients with <span class="code-span">?search=</span> query filter.</p>
+    <p><span class="badge-status status-implemented">GET</span> <span class="code-span">/api/patients/:id</span> - Fetches patient profile details (RBAC: Admin, Receptionist, Doctor, Patient self).</p>
+
+    <h3 class="sub-heading">6.3 Doctor & Staff Management API Group ( <span class="code-span">/api/doctors</span> )</h3>
+    <p><span class="badge-status status-implemented">GET</span> <span class="code-span">/api/doctors</span> - Fetches physician directory with department & fee details.</p>
+    <p><span class="badge-status status-implemented">POST</span> <span class="code-span">/api/doctors/:id/leave</span> - Submits doctor time-off leave request.</p>
+
+    <h3 class="sub-heading">6.4 Department & Appointment API Groups</h3>
+    <p><span class="badge-status status-implemented">GET</span> <span class="code-span">/api/appointments/available-slots</span> - Calculates 30-min available consultation slots filtering leaves & bookings.</p>
+    <p><span class="badge-status status-implemented">POST</span> <span class="code-span">/api/appointments</span> - Books appointment slot with double-booking collision prevention check.</p>
+    <p><span class="badge-status status-implemented">PATCH</span> <span class="code-span">/api/appointments/:id/status</span> - Lifecycle updates (<span class="code-span">CHECKED_IN</span>, <span class="code-span">IN_CONSULTATION</span>, <span class="code-span">COMPLETED</span>).</p>
+
+    <h3 class="sub-heading">6.5 Medical Record & EHR API Group ( <span class="code-span">/api/medical-records</span> )</h3>
+    <p><span class="badge-status status-implemented">POST</span> <span class="code-span">/api/medical-records</span> - Records vitals, diagnosis & Rx items. Auto-issues Tax Invoice & completes appointment.</p>
+
+    <h3 class="sub-heading">6.6 Billing, Reports & Audit API Groups</h3>
+    <p><span class="badge-status status-implemented">GET</span> <span class="code-span">/api/bills/:id</span> | <span class="badge-status status-implemented">POST</span> <span class="code-span">/api/bills/:id/pay</span> - Financial invoice details & payment settlement.</p>
+    <p><span class="badge-status status-implemented">GET</span> <span class="code-span">/api/audit-logs</span> - Executive metrics & immutable audit trail stream.</p>
+
+    <div class="page-footer">
+      <span>CarePlus Hospital Enterprise Systems</span>
+      <span>Page 9 of 11</span>
+    </div>
+  </div>
+
+  <!-- PAGE 10: 7. FOLDER STRUCTURE & 8. INTERFACES -->
+  <div class="page">
+    <div class="page-header">
+      <span>CAREPLUS HOSPITAL MANAGEMENT SYSTEM (HMS)</span>
+      <span>Full Stack Project Documentation | VESA Program</span>
+    </div>
+
+    <h2 class="section-heading"><span class="section-badge">7</span> Codebase Folder Structure</h2>
+    <h3 class="sub-heading">7.1 Directory Tree</h3>
+    <div class="code-box">Hospital Management System/
+├── backend/
+│   ├── src/
+│   │   ├── config/          # Database Dual-Driver Manager (db.js)
+│   │   ├── controllers/     # REST Controllers (appointment, auth, billing, patient, etc.)
+│   │   ├── db/              # Relational Schema & Automated Seed Runner (seedRunner.js)
+│   │   ├── middlewares/     # JWT Security Auth & Error Handler
+│   │   ├── routes/          # Express Route Endpoint Modules
+│   │   ├── services/        # Audit Trail Service (auditService.js)
+│   │   └── server.js        # Express Server Bootstrapper
+│   └── package.json
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── common/      # Modals, Badges & Printable PDF Renderers
+│   │   │   └── layout/      # Navbar & Role-based Navigation Sidebars
+│   │   ├── context/         # AuthContext, ThemeContext, ToastContext
+│   │   ├── pages/           # Admin, Doctor, Receptionist, Patient & Auth Views
+│   │   ├── services/        # Axios API Service Wrapper (api.js)
+│   │   ├── App.jsx          # Main Client Router & Route Guarding
+│   │   └── index.css        # Tailwind CSS Directives & Custom Utility Styles
+│   └── package.json
+└── vercel.json              # Serverless Deployment Settings</div>
+
+    <h2 class="section-heading"><span class="section-badge">8</span> Application Interfaces & Screenshots</h2>
+
+    <h3 class="sub-heading">8.1 Executive Administrator Command Center</h3>
+    <div class="code-box" style="background: #1e293b; border: 1px solid #334155;">CarePlus HMS - Admin Command Center
+──────────────────────────────────────────────────────────────────────────
+📊 Total Revenue: $12,450 | 🩺 Active Doctors: 12 | 👤 Patients: 1,420
+📅 Appointments Today: 38 | ⚡ System Status: Dual DB Connected (SQLite)
+──────────────────────────────────────────────────────────────────────────
+📈 Revenue Stream Analytics Chart (Cardiology: 45%, Neurology: 30%, Ortho: 25%)
+📜 Audit Logs Stream: [BOOK_APPOINTMENT], [ISSUE_PRESCRIPTION], [SETTLE_BILL]</div>
+    <p style="font-size: 10px; color: #64748b; text-align: center; margin-top: -10px;"><em>Figure 8.2 - Executive Administrator Command Center featuring Real-time Analytics & Audit Stream.</em></p>
+
+    <h3 class="sub-heading">8.2 Physician Workstation & Invoicing Module</h3>
+    <div class="code-box" style="background: #1e293b; border: 1px solid #334155;">CarePlus HMS - Doctor Desk & Tax Invoice Desk
+──────────────────────────────────────────────────────────────────────────
+🩺 Dr. Sarah Smith (Cardiology) | Today's Queue (3 Patients)
+Token #1 | John Doe | 09:00 AM | CHECKED_IN | [Start Consultation]
+Token #2 | Jane Miller | 09:30 AM | SCHEDULED | [View Health Chart]
+──────────────────────────────────────────────────────────────────────────
+Invoice INV-20260805-0004 | Fee: $50.00 | Govt Tax (10%): $5.00 | TOTAL: $55.00
+Status: [ PENDING ] | Method: (•) CASH ( ) CARD | [ PRINT RECEIPT ]</div>
+    <p style="font-size: 10px; color: #64748b; text-align: center; margin-top: -10px;"><em>Figure 8.3 & 8.8 - Physician Consultation Queue Workstation & Financial Tax Invoicing Module.</em></p>
+
+    <div class="page-footer">
+      <span>CarePlus Hospital Enterprise Systems</span>
+      <span>Page 10 of 11</span>
+    </div>
+  </div>
+
+  <!-- PAGE 11: 9. SECURITY & 10. CONCLUSION -->
+  <div class="page">
+    <div class="page-header">
+      <span>CAREPLUS HOSPITAL MANAGEMENT SYSTEM (HMS)</span>
+      <span>Full Stack Project Documentation | VESA Program</span>
+    </div>
+
+    <h2 class="section-heading"><span class="section-badge">9</span> Security & Technical Architecture</h2>
+
+    <h3 class="sub-heading">9.1 Security Implementation Details</h3>
+    <ul style="margin: 0 0 16px 0; padding-left: 20px; color: #334155;">
+      <li><strong>Authentication & JWT Lifecycle:</strong> 24-hour stateless session tokens stored securely in client <span class="code-span">localStorage</span> and validated via Express authorization middleware.</li>
+      <li><strong>Role-Based Access Control (RBAC):</strong> Strict route guards enforcing authorization checks for <span class="code-span">ADMIN</span>, <span class="code-span">DOCTOR</span>, <span class="code-span">RECEPTIONIST</span>, and <span class="code-span">PATIENT</span> roles.</li>
+      <li><strong>Password Cryptography:</strong> One-way salted hashing with BCrypt (10 rounds). Passwords are never stored in plaintext.</li>
+      <li><strong>SQL Injection Safeguards:</strong> 100% of database queries utilize parameterized placeholders ( <span class="code-span">?</span> ), preventing string concatenation attacks.</li>
+    </ul>
+
+    <h3 class="sub-heading">9.2 Key Engineering Challenges Solved</h3>
+    <ul style="margin: 0 0 16px 0; padding-left: 20px; color: #334155;">
+      <li><strong>Dynamic Multi-Driver Database Abstraction:</strong> Created a seamless SQL adapter (<span class="code-span">db.js</span>) that automatically translates keywords like <span class="code-span">AUTO_INCREMENT</span> to <span class="code-span">AUTOINCREMENT</span> for SQLite, guaranteeing zero-dependency serverless execution on Vercel.</li>
+      <li><strong>Time-Slot Collision Prevention:</strong> Implemented atomic SQL transaction checks to prevent double-booking identical doctor consultation slots.</li>
+      <li><strong>Printable PDF Generation:</strong> Designed client-side CSS print media stylesheets (<span class="code-span">@media print</span>) to render clean PDF prescriptions and receipts without heavy native dependencies.</li>
+    </ul>
+
+    <h2 class="section-heading"><span class="section-badge">10</span> Solved Outcomes & Conclusion</h2>
+    <ul style="margin: 0; padding-left: 20px; color: #334155;">
+      <li><strong>100% Digital Healthcare Workflow:</strong> Successfully replaced paper logs, register notebooks, and handwritten prescriptions with a centralized relational database platform.</li>
+      <li><strong>Zero Scheduling Overlaps:</strong> Standardized 30-minute consultation slot algorithm eliminates waiting room queue congestion.</li>
+      <li><strong>Granular Data Security:</strong> Full RBAC enforcement protects confidential patient health diagnoses.</li>
+      <li><strong>Production Readiness:</strong> Fully modular codebase backed by database migrations, automated seed scripts, and deployment configurations ready for cloud staging.</li>
+    </ul>
+
+    <div class="page-footer">
+      <span>CarePlus Hospital Enterprise Systems</span>
+      <span>Page 11 of 11</span>
+    </div>
+  </div>
+
+</body>
+</html>
