@@ -171,7 +171,7 @@ CREATE TABLE appointments (
 
 ### Step 1: Clone Repository
 ```bash
-git clone https://github.com/careplus/careplus-hospital-system.git
+git clone https://github.com/VedantD10/careplus-hospital-system.git
 cd careplus-hospital-system
 ```
 
@@ -190,7 +190,7 @@ cd frontend
 npm install
 npm run dev
 ```
-*Frontend dev server runs on `http://localhost:5173`.*
+*Frontend dev server runs on `http://localhost:3000`.*
 
 ---
 
