@@ -27,7 +27,6 @@ class NumberedCanvas(canvas.Canvas):
 
     def draw_header_footer(self, page_count):
         if self._pageNumber == 1:
-            # Page 1 background is drawn on first page canvas callback BEFORE flowables.
             return
 
         self.saveState()
@@ -56,19 +55,38 @@ class NumberedCanvas(canvas.Canvas):
 
 def draw_cover_background(canvas_obj, doc_obj):
     canvas_obj.saveState()
-    # Fill solid dark blue background BEFORE flowables render
-    canvas_obj.setFillColor(colors.HexColor("#0C2360"))
+    
+    # 1. Solid Deep Royal Blue Base
+    canvas_obj.setFillColor(colors.HexColor("#09152e"))
     canvas_obj.rect(0, 0, 210 * mm, 297 * mm, fill=True, stroke=False)
     
-    # Cover Page Footer Line & Text
-    canvas_obj.setStrokeColor(colors.HexColor("#1E3A8A"))
-    canvas_obj.setLineWidth(0.8)
+    # 2. Top-Right Ambient Tech Accent
+    path = canvas_obj.beginPath()
+    path.moveTo(110 * mm, 297 * mm)
+    path.lineTo(210 * mm, 297 * mm)
+    path.lineTo(210 * mm, 197 * mm)
+    path.close()
+    canvas_obj.setFillColor(colors.HexColor("#0f2b68"))
+    canvas_obj.drawPath(path, fill=1, stroke=0)
+
+    # 3. Geometric Accent Lines
+    canvas_obj.setStrokeColor(colors.HexColor("#2563eb"))
+    canvas_obj.setLineWidth(1.5)
+    canvas_obj.line(20 * mm, 272 * mm, 45 * mm, 272 * mm)
+    
+    canvas_obj.setStrokeColor(colors.HexColor("#3b82f6"))
+    canvas_obj.setLineWidth(0.5)
+    canvas_obj.line(20 * mm, 270 * mm, 190 * mm, 270 * mm)
+
+    # 4. Cover Page Footer Line & Text
+    canvas_obj.setStrokeColor(colors.HexColor("#2563eb"))
+    canvas_obj.setLineWidth(1.2)
     canvas_obj.line(20 * mm, 24 * mm, 190 * mm, 24 * mm)
     
-    canvas_obj.setFont("Helvetica", 9)
-    canvas_obj.setFillColor(colors.HexColor("#93C5FD"))
-    canvas_obj.drawString(20 * mm, 16 * mm, "Confidential - Prepared for VESA Skill Development Program")
-    canvas_obj.drawRightString(190 * mm, 16 * mm, "CarePlus Hospital Enterprise Systems")
+    canvas_obj.setFont("Helvetica-Bold", 8.5)
+    canvas_obj.setFillColor(colors.HexColor("#93c5fd"))
+    canvas_obj.drawString(20 * mm, 16 * mm, "CONFIDENTIAL  •  PREPARED FOR VESA SKILL DEVELOPMENT PROGRAM")
+    canvas_obj.drawRightString(190 * mm, 16 * mm, "CAREPLUS HOSPITAL ENTERPRISE SYSTEMS © 2026")
     canvas_obj.restoreState()
 
 
@@ -107,8 +125,8 @@ def create_pdf(output_filename):
         'CoverSubtitle',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=15,
-        leading=20,
+        fontSize=14,
+        leading=19,
         textColor=colors.HexColor("#93C5FD")
     )
     
@@ -175,18 +193,18 @@ def create_pdf(output_filename):
     # ==========================================
     # PAGE 1: COVER PAGE
     # ==========================================
-    story.append(Spacer(1, 10 * mm))
-    story.append(Paragraph("🏥 CAREPLUS HOSPITAL", ParagraphStyle('LogoText', fontName='Helvetica-Bold', fontSize=18, textColor=colors.white)))
-    story.append(Paragraph("Enterprise Healthcare Systems", ParagraphStyle('SubText', fontName='Helvetica-Bold', fontSize=10, textColor=colors.HexColor("#93C5FD"))))
+    story.append(Spacer(1, 6 * mm))
+    story.append(Paragraph("🏥 CAREPLUS HOSPITAL", ParagraphStyle('LogoText', fontName='Helvetica-Bold', fontSize=20, textColor=colors.white)))
+    story.append(Paragraph("ENTERPRISE HEALTHCARE SYSTEMS", ParagraphStyle('SubText', fontName='Helvetica-Bold', fontSize=9, textColor=colors.HexColor("#60A5FA"))))
     
-    story.append(Spacer(1, 40 * mm))
-    story.append(Paragraph("OFFICIAL TECHNICAL SPECIFICATION & SYSTEM ARCHITECTURE", ParagraphStyle('PillText', fontName='Helvetica-Bold', fontSize=9, textColor=colors.HexColor("#93C5FD"))))
+    story.append(Spacer(1, 35 * mm))
+    story.append(Paragraph("✦ OFFICIAL TECHNICAL SPECIFICATION & SYSTEM ARCHITECTURE ✦", ParagraphStyle('PillText', fontName='Helvetica-Bold', fontSize=9.5, textColor=colors.HexColor("#93C5FD"))))
     story.append(Spacer(1, 4 * mm))
     story.append(Paragraph("CarePlus Hospital Management System", title_style))
     story.append(Spacer(1, 4 * mm))
     story.append(Paragraph("Full Stack Enterprise Project Documentation & Implementation Report", subtitle_style))
     
-    story.append(Spacer(1, 20 * mm))
+    story.append(Spacer(1, 22 * mm))
     
     meta_data = [
         [Paragraph("PROJECT TITLE", ParagraphStyle('M1', fontName='Helvetica-Bold', fontSize=8, textColor=colors.HexColor("#94A3B8"))),
@@ -209,17 +227,16 @@ def create_pdf(output_filename):
     
     meta_table = Table(meta_data, colWidths=[85 * mm, 85 * mm])
     meta_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor("#0A192F")),
+        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor("#0B1426")),
         ('PADDING', (0,0), (-1,-1), 8),
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-        ('BOX', (0,0), (-1,-1), 1, colors.HexColor("#1E3A8A")),
-        ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor("#102A71")),
+        ('BOX', (0,0), (-1,-1), 1.2, colors.HexColor("#1D4ED8")),
+        ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor("#1E293B")),
     ]))
     
     story.append(meta_table)
     story.append(PageBreak())
 
-    # Switch to later pages template
     # ==========================================
     # PAGE 2: TABLE OF CONTENTS
     # ==========================================
