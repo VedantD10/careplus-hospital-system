@@ -2,7 +2,7 @@ import os
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, KeepTogether, HRFlowable
+    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, KeepTogether, HRFlowable, PageTemplate, BaseDocTemplate, Frame
 )
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import mm
@@ -27,21 +27,7 @@ class NumberedCanvas(canvas.Canvas):
 
     def draw_header_footer(self, page_count):
         if self._pageNumber == 1:
-            # Draw Cover Page Gradient / Dark Background
-            self.saveState()
-            self.setFillColor(colors.HexColor("#0C2360"))
-            self.rect(0, 0, 210 * mm, 297 * mm, fill=True, stroke=False)
-            
-            # Cover Page Footer Line & Text
-            self.setStrokeColor(colors.HexColor("#1E3A8A"))
-            self.setLineWidth(0.8)
-            self.line(20 * mm, 24 * mm, 190 * mm, 24 * mm)
-            
-            self.setFont("Helvetica", 9)
-            self.setFillColor(colors.HexColor("#93C5FD"))
-            self.drawString(20 * mm, 16 * mm, "Confidential - Prepared for VESA Skill Development Program")
-            self.drawRightString(190 * mm, 16 * mm, "CarePlus Hospital Enterprise Systems")
-            self.restoreState()
+            # Page 1 background is drawn on first page canvas callback BEFORE flowables.
             return
 
         self.saveState()
@@ -68,8 +54,26 @@ class NumberedCanvas(canvas.Canvas):
         self.restoreState()
 
 
+def draw_cover_background(canvas_obj, doc_obj):
+    canvas_obj.saveState()
+    # Fill solid dark blue background BEFORE flowables render
+    canvas_obj.setFillColor(colors.HexColor("#0C2360"))
+    canvas_obj.rect(0, 0, 210 * mm, 297 * mm, fill=True, stroke=False)
+    
+    # Cover Page Footer Line & Text
+    canvas_obj.setStrokeColor(colors.HexColor("#1E3A8A"))
+    canvas_obj.setLineWidth(0.8)
+    canvas_obj.line(20 * mm, 24 * mm, 190 * mm, 24 * mm)
+    
+    canvas_obj.setFont("Helvetica", 9)
+    canvas_obj.setFillColor(colors.HexColor("#93C5FD"))
+    canvas_obj.drawString(20 * mm, 16 * mm, "Confidential - Prepared for VESA Skill Development Program")
+    canvas_obj.drawRightString(190 * mm, 16 * mm, "CarePlus Hospital Enterprise Systems")
+    canvas_obj.restoreState()
+
+
 def create_pdf(output_filename):
-    doc = SimpleDocTemplate(
+    doc = BaseDocTemplate(
         output_filename,
         pagesize=A4,
         leftMargin=20 * mm,
@@ -77,6 +81,12 @@ def create_pdf(output_filename):
         topMargin=22 * mm,
         bottomMargin=22 * mm
     )
+
+    frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id='normal')
+    
+    first_page = PageTemplate(id='FirstPage', frames=frame, onPage=draw_cover_background)
+    later_pages = PageTemplate(id='LaterPages', frames=frame)
+    doc.addPageTemplates([first_page, later_pages])
 
     styles = getSampleStyleSheet()
     
@@ -209,6 +219,7 @@ def create_pdf(output_filename):
     story.append(meta_table)
     story.append(PageBreak())
 
+    # Switch to later pages template
     # ==========================================
     # PAGE 2: TABLE OF CONTENTS
     # ==========================================
