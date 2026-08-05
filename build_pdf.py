@@ -27,10 +27,20 @@ class NumberedCanvas(canvas.Canvas):
 
     def draw_header_footer(self, page_count):
         if self._pageNumber == 1:
-            # Draw Cover Page Background
+            # Draw Cover Page Gradient / Dark Background
             self.saveState()
-            self.setFillColor(colors.HexColor("#0A192F"))
+            self.setFillColor(colors.HexColor("#0C2360"))
             self.rect(0, 0, 210 * mm, 297 * mm, fill=True, stroke=False)
+            
+            # Cover Page Footer Line & Text
+            self.setStrokeColor(colors.HexColor("#1E3A8A"))
+            self.setLineWidth(0.8)
+            self.line(20 * mm, 24 * mm, 190 * mm, 24 * mm)
+            
+            self.setFont("Helvetica", 9)
+            self.setFillColor(colors.HexColor("#93C5FD"))
+            self.drawString(20 * mm, 16 * mm, "Confidential - Prepared for VESA Skill Development Program")
+            self.drawRightString(190 * mm, 16 * mm, "CarePlus Hospital Enterprise Systems")
             self.restoreState()
             return
 
@@ -71,17 +81,15 @@ def create_pdf(output_filename):
     styles = getSampleStyleSheet()
     
     # Custom Styles
-    c_blue = colors.HexColor("#0A192F")
     c_accent = colors.HexColor("#2563EB")
     c_dark = colors.HexColor("#0F172A")
-    c_sub = colors.HexColor("#475569")
     
     title_style = ParagraphStyle(
         'CoverTitle',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=30,
-        leading=36,
+        fontSize=32,
+        leading=38,
         textColor=colors.white
     )
     
@@ -157,18 +165,18 @@ def create_pdf(output_filename):
     # ==========================================
     # PAGE 1: COVER PAGE
     # ==========================================
-    story.append(Spacer(1, 20 * mm))
+    story.append(Spacer(1, 10 * mm))
     story.append(Paragraph("🏥 CAREPLUS HOSPITAL", ParagraphStyle('LogoText', fontName='Helvetica-Bold', fontSize=18, textColor=colors.white)))
     story.append(Paragraph("Enterprise Healthcare Systems", ParagraphStyle('SubText', fontName='Helvetica-Bold', fontSize=10, textColor=colors.HexColor("#93C5FD"))))
     
-    story.append(Spacer(1, 35 * mm))
+    story.append(Spacer(1, 40 * mm))
     story.append(Paragraph("OFFICIAL TECHNICAL SPECIFICATION & SYSTEM ARCHITECTURE", ParagraphStyle('PillText', fontName='Helvetica-Bold', fontSize=9, textColor=colors.HexColor("#93C5FD"))))
     story.append(Spacer(1, 4 * mm))
     story.append(Paragraph("CarePlus Hospital Management System", title_style))
     story.append(Spacer(1, 4 * mm))
     story.append(Paragraph("Full Stack Enterprise Project Documentation & Implementation Report", subtitle_style))
     
-    story.append(Spacer(1, 30 * mm))
+    story.append(Spacer(1, 20 * mm))
     
     meta_data = [
         [Paragraph("PROJECT TITLE", ParagraphStyle('M1', fontName='Helvetica-Bold', fontSize=8, textColor=colors.HexColor("#94A3B8"))),
@@ -191,11 +199,11 @@ def create_pdf(output_filename):
     
     meta_table = Table(meta_data, colWidths=[85 * mm, 85 * mm])
     meta_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor("#0F172A")),
+        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor("#0A192F")),
         ('PADDING', (0,0), (-1,-1), 8),
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-        ('BOX', (0,0), (-1,-1), 1, colors.HexColor("#334155")),
-        ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor("#1E293B")),
+        ('BOX', (0,0), (-1,-1), 1, colors.HexColor("#1E3A8A")),
+        ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor("#102A71")),
     ]))
     
     story.append(meta_table)
